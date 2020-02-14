@@ -1,5 +1,6 @@
 package com.azericard.insurance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -21,6 +22,7 @@ public class Company {
     private LocalDateTime createdDate;
     private String logo;
     private boolean status;
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<User> users;
 }

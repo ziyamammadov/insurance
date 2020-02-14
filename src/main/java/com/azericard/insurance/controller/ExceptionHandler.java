@@ -1,9 +1,6 @@
 package com.azericard.insurance.controller;
 
-import com.azericard.insurance.exception.CompanyNotFoundException;
-import com.azericard.insurance.exception.ExceptionEntity;
-import com.azericard.insurance.exception.GeneralException;
-import com.azericard.insurance.exception.UserNotFoundException;
+import com.azericard.insurance.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -54,6 +51,13 @@ public class ExceptionHandler {
         return ExceptionEntity.builder()
                 .code(101)
                 .description(ex.getMessage())
+                .build();
+    }
+    @org.springframework.web.bind.annotation.ExceptionHandler(AccessNotAllowedException.class)
+    public ExceptionEntity handleAccessNotAllowedException(AccessNotAllowedException ex) {
+        return ExceptionEntity.builder()
+                .code(102)
+                .description("You are not allowed to send request to this URL")
                 .build();
     }
 }

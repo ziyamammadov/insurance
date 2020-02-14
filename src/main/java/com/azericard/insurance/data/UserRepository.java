@@ -1,14 +1,22 @@
 package com.azericard.insurance.data;
 
+import com.azericard.insurance.entity.Role;
 import com.azericard.insurance.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
-    @Query(value = "select u from User u where u.company.id=?1")
-    List<User> getUsersByCompanyId(long id);
+    List<User> getUsersByCompany_Id(long id);
+
+    @Query(value = "select u from User u,Company c where u.role='OPERATOR' group by c")
+    List<User> getListOfOperatorsByCompany();
+
+    List<User> getUsersByRole(Role role);
+
+    Optional<User> getUserByUsernameAndPassword(String username, String password);
 }

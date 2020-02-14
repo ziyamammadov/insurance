@@ -16,22 +16,23 @@ public class CompanyController {
     }
 
     @GetMapping("/all")
-    public List<Company> get_all() {
-        return service.getAll();
+    public List<Company> get_all(@RequestHeader("authToken") String role) {
+        System.out.println("BURADI           "+role);
+        return service.getAll(role);
     }
 
     @GetMapping("/{id}")
-    public Company get_one(@PathVariable long id) {
-        return service.getOne(id);
+    public Company get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
+        return service.getOne(id, role);
     }
 
     @PutMapping("/save")
-    public Company create(@RequestBody Company company) {
-        return service.save(company);
+    public Company create(@RequestBody Company company, @RequestHeader("authToken") String role) {
+        return service.save(company, role);
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestBody Company company) {
-        service.delete(company);
+    public void delete(@RequestBody Company company, @RequestHeader("authToken") String role) {
+        service.delete(company, role);
     }
 }

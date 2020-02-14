@@ -1,6 +1,7 @@
 package com.azericard.insurance.service;
 
 import com.azericard.insurance.data.UserRepository;
+import com.azericard.insurance.entity.Role;
 import com.azericard.insurance.entity.User;
 import com.azericard.insurance.exception.GeneralException;
 import com.azericard.insurance.exception.UserNotFoundException;
@@ -39,7 +40,30 @@ public class UserService {
     }
 
     public List<User> getUsersByCompany(long id) {
-        List<User> users = (List<User>) userRepo.getUsersByCompanyId(id);
+        List<User> users = userRepo.getUsersByCompany_Id(id);
+        if (users.isEmpty()) {
+            throw new GeneralException("No Data Found");
+        }
+        return users;
+    }
+    public List<User> getAdmins() {
+        List<User> users = userRepo.getUsersByRole(Role.ADMIN);
+        if (users.isEmpty()) {
+            throw new GeneralException("No Data Found");
+        }
+        return users;
+    }
+
+    public List<User> getOperators() {
+        List<User> users = userRepo.getUsersByRole(Role.OPERATOR);
+        if (users.isEmpty()) {
+            throw new GeneralException("No Data Found");
+        }
+        return users;
+    }
+
+    public List<User> getOperatorsByCompany() {
+        List<User> users = userRepo.getListOfOperatorsByCompany();
         if (users.isEmpty()) {
             throw new GeneralException("No Data Found");
         }
