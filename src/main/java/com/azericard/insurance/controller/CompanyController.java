@@ -17,7 +17,6 @@ public class CompanyController {
 
     @GetMapping("/all")
     public List<Company> get_all(@RequestHeader("authToken") String role) {
-        System.out.println("BURADI           "+role);
         return service.getAll(role);
     }
 

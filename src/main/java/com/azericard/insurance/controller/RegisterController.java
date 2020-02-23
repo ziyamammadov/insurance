@@ -2,7 +2,6 @@ package com.azericard.insurance.controller;
 
 import com.azericard.insurance.entity.User;
 import com.azericard.insurance.service.RegisterService;
-import com.azericard.insurance.service.UserService;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,7 +16,7 @@ public class RegisterController {
     }
 
     @PutMapping("/signUp")
-    public User register(@RequestBody User user,@RequestHeader("authToken") String role) {
-        return service.save(user,role);
+    public User register(@RequestBody User user, @RequestHeader("authToken") String role) {
+        return service.save(user, role);
     }
 }

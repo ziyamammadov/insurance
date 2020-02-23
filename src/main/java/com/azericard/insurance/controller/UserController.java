@@ -15,10 +15,9 @@ public class UserController {
         this.service = service;
     }
 
-
     @GetMapping
-    public void setStatus(@RequestParam("status") String status){
-
+    public void setStatus(@RequestParam("id") long id,@RequestParam("status") String status){
+        service.setStatus(id,status);
     }
     @GetMapping("/all")
     public List<User> get_all() {

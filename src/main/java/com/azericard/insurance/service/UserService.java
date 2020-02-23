@@ -14,6 +14,7 @@ import java.util.Optional;
 public class UserService {
     private UserRepository userRepo;
 
+
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
@@ -68,5 +69,13 @@ public class UserService {
             throw new GeneralException("No Data Found");
         }
         return users;
+    }
+
+    public User setStatus(long id, String status) {
+        User updated = new User();
+        updated.setId(id);
+        updated.setStatus(Boolean.parseBoolean(status));
+        return userRepo.save(updated);
+
     }
 }

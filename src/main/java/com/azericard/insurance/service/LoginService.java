@@ -19,6 +19,7 @@ public class LoginService {
 
     public LoginMessage getLoggedUser(String username, String password) {
         User user = userRepository.getUserByUsernameAndPassword(username, password).orElseThrow(UserNotFoundException::new);
+        userRepository.save(user);
         String encodedUsername = new String(Base64.getEncoder().encode(user.getRole().toString().getBytes()));
         return new LoginMessage(username, encodedUsername);
     }
