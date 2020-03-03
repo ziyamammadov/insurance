@@ -1,7 +1,7 @@
 package com.azericard.insurance.service;
 
 import com.azericard.insurance.data.InsuranceRepository;
-import com.azericard.insurance.entity.EncodedRole;
+import com.azericard.insurance.util.EncodedRole;
 import com.azericard.insurance.entity.Insurance;
 import com.azericard.insurance.exception.AccessNotAllowedException;
 import com.azericard.insurance.exception.GeneralException;
@@ -25,6 +25,7 @@ public class InsuranceService {
             insurance.setFromDate(insurance.getRegisterDate());
             insurance.setNumberOfDays(ChronoUnit.DAYS.between(insurance.getFromDate(), insurance.getToDate()));
             insurance.setPolicyNumber(insurance.getClient().getFIN());
+            System.out.println("HERE IS FIN NUMBER"+insurance.getClient().getFIN());
             insurance.setInsuranceCost(insurance.buildInsuranceCost());
             insurance.setStatus(insurance.buildStatus());
             return insuranceRepository.save(insurance);

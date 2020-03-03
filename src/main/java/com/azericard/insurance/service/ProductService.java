@@ -1,7 +1,7 @@
 package com.azericard.insurance.service;
 
 import com.azericard.insurance.data.ProductRepository;
-import com.azericard.insurance.entity.EncodedRole;
+import com.azericard.insurance.util.EncodedRole;
 import com.azericard.insurance.entity.Product;
 import com.azericard.insurance.exception.AccessNotAllowedException;
 import com.azericard.insurance.exception.GeneralException;

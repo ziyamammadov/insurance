@@ -2,7 +2,7 @@ package com.azericard.insurance.service;
 
 import com.azericard.insurance.data.UserRepository;
 import com.azericard.insurance.email.EmailSender;
-import com.azericard.insurance.entity.EncodedRole;
+import com.azericard.insurance.util.EncodedRole;
 import com.azericard.insurance.entity.User;
 import com.azericard.insurance.exception.AccessNotAllowedException;
 import org.springframework.stereotype.Service;

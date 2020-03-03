@@ -1,5 +1,6 @@
 package com.azericard.insurance.entity;
 
+import com.azericard.insurance.util.Role;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;

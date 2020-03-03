@@ -1,6 +1,6 @@
 package com.azericard.insurance.data;
 
-import com.azericard.insurance.entity.Role;
+import com.azericard.insurance.util.Role;
 import com.azericard.insurance.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

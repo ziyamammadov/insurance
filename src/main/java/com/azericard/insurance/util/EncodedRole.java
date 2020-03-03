@@ -1,4 +1,4 @@
-package com.azericard.insurance.entity;
+package com.azericard.insurance.util;
 
 import java.util.Base64;
 

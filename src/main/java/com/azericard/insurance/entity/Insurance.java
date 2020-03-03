@@ -1,12 +1,13 @@
 package com.azericard.insurance.entity;
 
+import com.azericard.insurance.util.PaymentStatus;
+import com.azericard.insurance.util.Status;
 import com.azericard.insurance.util.Utils;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
