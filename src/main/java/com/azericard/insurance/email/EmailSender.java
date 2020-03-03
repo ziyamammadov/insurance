@@ -6,17 +6,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
 
 @Slf4j
 @Component
-public class EmailService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
+public class EmailSender {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmailSender.class);
     private final JavaMailSender javaMailSender;
 
-    public EmailService(JavaMailSender javaMailSender) {
+    public EmailSender(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 

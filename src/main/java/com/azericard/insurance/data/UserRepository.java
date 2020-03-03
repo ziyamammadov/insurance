@@ -13,6 +13,9 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<User, Long> {
     List<User> getUsersByCompany_Id(long id);
 
+    @Override
+    Optional<User> findById(Long aLong);
+
     @Query(value = "select u from User u,Company c where u.role='OPERATOR' group by c")
     List<User> getListOfOperatorsByCompany();
 

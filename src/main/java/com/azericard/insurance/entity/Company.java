@@ -21,9 +21,9 @@ public class Company {
     @NotBlank(message = "Address may not be blank")
     private String address;
     @NotBlank(message = "Mobile number may not be blank")
-    private int mobileNumber;
+    private String mobileNumber;
     @NotBlank(message = "Office number may not be blank")
-    private int officeNumber;
+    private String officeNumber;
     @CreationTimestamp
     private LocalDateTime createdDate;
     private String logo;

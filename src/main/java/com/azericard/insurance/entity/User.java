@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -39,7 +38,7 @@ public class User {
     @CreationTimestamp
     private LocalDateTime registerDate;
     @NotNull(message = "Phone number may not be blank")
-    private int phoneNumber;
+    private String phoneNumber;
     @UpdateTimestamp
     private LocalDateTime lastLoginDate;
     @Enumerated(EnumType.STRING)

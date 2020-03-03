@@ -1,0 +1,58 @@
+ADDING INSURANCE
+{
+    "toDate": "2020-05-03T22:57:25",
+    "createdBy": "Ziya",
+    "modifiedBy": "Ziya",
+    "product": {
+        "id": 1,
+        "name": "Premium",
+        "firstAmount": 500,
+        "secondAmount": 1500,
+        "thirdAmount": 2500,
+        "company": {
+            "id": 1
+        }
+    },
+    "client": {
+        "id": 1,
+        "name": "Ramnin",
+        "surname": "Safarov",
+        "address": "Baku",
+        "email": "raminsafarov@gmail.com",
+        "birth": "2000-03-03",
+        "FIN": "123",
+        "phoneNumber": "4656"
+    }
+}
+ADDING COMPANY
+{
+	"id":1,
+    "name": "Azericard",
+    "address": "Baku",
+    "mobileNumber": "0555555555",
+    "officeNumber": "123",
+    "logo": "azericard",
+    "status":true
+}
+ADDING CLIENT
+{
+        "id": 1,
+        "name": "Ramnin",
+        "surname": "Safarov",
+        "address": "Baku",
+        "email": "raminsafarov@gmail.com",
+        "birth": "2000-03-03",
+        "FIN": "123",
+        "phoneNumber": "4656"
+}
+ADDING PRODUCT
+{
+        "id": 1,
+        "name": "Premium",
+        "firstAmount": 500,
+        "secondAmount": 1500,
+        "thirdAmount": 2500,
+        "company": {
+            "id": 1
+        }
+}

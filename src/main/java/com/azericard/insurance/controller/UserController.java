@@ -16,45 +16,47 @@ public class UserController {
     }
 
     @GetMapping
-    public void setStatus(@RequestParam("id") long id,@RequestParam("status") String status){
-        service.setStatus(id,status);
+    public User setStatus(@RequestParam("id") long id, @RequestParam("status") String status, @RequestHeader("authToken") String role) {
+        return service.setStatus(id, status, role);
     }
+
     @GetMapping("/all")
-    public List<User> get_all() {
-        return service.getAll();
+    public List<User> get_all(@RequestHeader("authToken") String role) {
+        return service.getAll(role);
     }
 
     @GetMapping("/{id}")
-    public User get_one(@PathVariable long id) {
-        return service.getOne(id);
+    public User get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
+        return service.getOne(id, role);
     }
 
     @PutMapping("/save")
-    public User create(@RequestBody User user) {
-        return service.save(user);
+    public User create(@RequestBody User user, @RequestHeader("authToken") String role) {
+        return service.save(user, role);
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestBody User user) {
-        service.delete(user);
+    public void delete(@RequestBody User user, @RequestHeader("authToken") String role) {
+        service.delete(user, role);
     }
+
     @GetMapping("/company/{id}")
-    public List<User> get_users_by_company(@PathVariable long id) {
-        return service.getUsersByCompany(id);
+    public List<User> get_users_by_company(@PathVariable long id, @RequestHeader("authToken") String role) {
+        return service.getUsersByCompany(id, role);
     }
 
     @GetMapping("/admins")
-    public List<User> get_admins() {
-        return service.getAdmins();
+    public List<User> get_admins(@RequestHeader("authToken") String role) {
+        return service.getAdmins(role);
     }
 
     @GetMapping("/operators")
-    public List<User> get_operators() {
-        return service.getOperators();
+    public List<User> get_operators(@RequestHeader("authToken") String role) {
+        return service.getOperators(role);
     }
 
     @GetMapping("/operatorsByCompany")
-    public List<User> get_operators_by_company() {
-        return service.getOperatorsByCompany();
+    public List<User> get_operators_by_company(@RequestHeader("authToken") String role) {
+        return service.getOperatorsByCompany(role);
     }
 }

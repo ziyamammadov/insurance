@@ -50,10 +50,18 @@ public class ExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ProductNotFoundException.class)
-    public ExceptionEntity handleCompanyNotFoundException(ProductNotFoundException ex) {
+    public ExceptionEntity handleProductNotFoundException(ProductNotFoundException ex) {
         return ExceptionEntity.builder()
                 .code(104)
                 .description("Product not found")
+                .build();
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(InsuranceNotFoundException.class)
+    public ExceptionEntity handleInsuranceNotFoundException(InsuranceNotFoundException ex) {
+        return ExceptionEntity.builder()
+                .code(104)
+                .description("Insurance not found")
                 .build();
     }
 
@@ -74,7 +82,15 @@ public class ExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(RollbackException.class)
-    public ExceptionEntity handleUserNotFoundException(RollbackException ex) {
+    public ExceptionEntity handleRollbackException(RollbackException ex) {
+        return ExceptionEntity.builder()
+                .code(106)
+                .description(ex.getMessage())
+                .build();
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(IllegalArgumentException.class)
+    public ExceptionEntity handleIllegalArgumentException(IllegalArgumentException ex) {
         return ExceptionEntity.builder()
                 .code(106)
                 .description(ex.getMessage())
