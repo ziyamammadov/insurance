@@ -1,6 +1,7 @@
 package com.azericard.insurance.service;
 
 import com.azericard.insurance.data.UserRepository;
+import com.azericard.insurance.entity.Company;
 import com.azericard.insurance.util.EncodedRole;
 import com.azericard.insurance.util.Role;
 import com.azericard.insurance.entity.User;
@@ -89,9 +90,9 @@ public class UserService {
         throw new AccessNotAllowedException();
     }
 
-    public List<User> getOperatorsByCompany(String role) {
+    public List<User> getOperatorsByCompany(Company company, String role) {
         if (role.equals(EncodedRole.SUPER_ADMIN)) {
-            List<User> users = userRepo.getListOfOperatorsByCompany();
+            List<User> users = userRepo.getListOfOperatorsByCompany(company);
             if (users.isEmpty()) {
                 throw new GeneralException("No Data Found");
             }

@@ -1,7 +1,11 @@
 package com.azericard.insurance.controller;
 
+import com.azericard.insurance.entity.Client;
+import com.azericard.insurance.entity.Company;
 import com.azericard.insurance.entity.Insurance;
 import com.azericard.insurance.service.InsuranceService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,18 +20,30 @@ public class InsuranceController {
     }
 
     @GetMapping("/all")
-    public List<Insurance> get_all(@RequestHeader("authToken") String role) {
-        return service.getAll(role);
+    public ResponseEntity<List<Insurance>> get_all(@RequestHeader("authToken") String role) {
+        List<Insurance> all = service.getAll(role);
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Insurance get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
-        return service.getOne(id, role);
+    public ResponseEntity<Insurance> get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
+        Insurance insurance = service.getOne(id, role);
+        if (insurance == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(insurance, HttpStatus.OK);
     }
 
     @PutMapping("/save")
-    public Insurance create(@RequestBody Insurance insurance, @RequestHeader("authToken") String role) {
-        return service.save(insurance, role);
+    public ResponseEntity<Insurance> create(@RequestBody Insurance insurance, @RequestHeader("authToken") String role) {
+        Insurance ins= service.save(insurance, role);
+        if (ins == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(ins, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")

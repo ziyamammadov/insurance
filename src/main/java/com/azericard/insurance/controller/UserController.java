@@ -1,7 +1,10 @@
 package com.azericard.insurance.controller;
 
+import com.azericard.insurance.entity.Company;
 import com.azericard.insurance.entity.User;
 import com.azericard.insurance.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,18 +24,30 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> get_all(@RequestHeader("authToken") String role) {
-        return service.getAll(role);
+    public ResponseEntity<List<User>> get_all(@RequestHeader("authToken") String role) {
+        List<User> all = service.getAll(role);
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public User get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
-        return service.getOne(id, role);
+    public ResponseEntity<User> get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
+        User user = service.getOne(id, role);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PutMapping("/save")
-    public User create(@RequestBody User user, @RequestHeader("authToken") String role) {
-        return service.save(user, role);
+    public ResponseEntity<User> create(@RequestBody User user, @RequestHeader("authToken") String role) {
+        User u = service.save(user, role);
+        if (u == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
@@ -41,22 +56,38 @@ public class UserController {
     }
 
     @GetMapping("/company/{id}")
-    public List<User> get_users_by_company(@PathVariable long id, @RequestHeader("authToken") String role) {
-        return service.getUsersByCompany(id, role);
+    public ResponseEntity<List<User>> get_users_by_company(@PathVariable long id, @RequestHeader("authToken") String role) {
+        List<User> all = service.getUsersByCompany(id, role);
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping("/admins")
-    public List<User> get_admins(@RequestHeader("authToken") String role) {
-        return service.getAdmins(role);
+    public ResponseEntity<List<User>> get_admins(@RequestHeader("authToken") String role) {
+        List<User> all = service.getAdmins(role);
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping("/operators")
-    public List<User> get_operators(@RequestHeader("authToken") String role) {
-        return service.getOperators(role);
+    public ResponseEntity<List<User>> get_operators(@RequestHeader("authToken") String role) {
+        List<User> all = service.getOperators(role);
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping("/operatorsByCompany")
-    public List<User> get_operators_by_company(@RequestHeader("authToken") String role) {
-        return service.getOperatorsByCompany(role);
+    public ResponseEntity<List<User>> get_operators_by_company(@RequestBody Company company, @RequestHeader("authToken") String role) {
+        List<User> all = service.getOperatorsByCompany(company, role);
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 }

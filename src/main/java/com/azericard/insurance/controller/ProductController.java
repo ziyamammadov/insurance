@@ -1,7 +1,11 @@
 package com.azericard.insurance.controller;
 
+import com.azericard.insurance.entity.Company;
+import com.azericard.insurance.entity.Insurance;
 import com.azericard.insurance.entity.Product;
 import com.azericard.insurance.service.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,18 +20,30 @@ public class ProductController {
     }
 
     @GetMapping("/all")
-    public List<Product> get_all(@RequestHeader("authToken") String role) {
-        return service.getAll(role);
+    public ResponseEntity<List<Product>> get_all(@RequestHeader("authToken") String role) {
+        List<Product> all = service.getAll(role);
+        if (all.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Product get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
-        return service.getOne(id, role);
+    public ResponseEntity<Product> get_one(@PathVariable long id, @RequestHeader("authToken") String role) {
+        Product product = service.getOne(id, role);
+        if (product == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @PutMapping("/save")
-    public Product create(@RequestBody Product product, @RequestHeader("authToken") String role) {
-        return service.save(product, role);
+    public ResponseEntity<Product> create(@RequestBody Product product, @RequestHeader("authToken") String role) {
+        Product p= service.save(product, role);
+        if (p == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")

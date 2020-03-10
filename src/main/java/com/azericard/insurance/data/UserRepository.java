@@ -1,5 +1,6 @@
 package com.azericard.insurance.data;
 
+import com.azericard.insurance.entity.Company;
 import com.azericard.insurance.util.Role;
 import com.azericard.insurance.entity.User;
 import org.springframework.data.jpa.repository.Query;
@@ -16,8 +17,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Override
     Optional<User> findById(Long aLong);
 
-    @Query(value = "select u from User u,Company c where u.role='OPERATOR' group by c")
-    List<User> getListOfOperatorsByCompany();
+    @Query(value = "select u from User u,Company c where u.role='OPERATOR' and u.company=?1")
+    List<User> getListOfOperatorsByCompany(Company company);
 
     List<User> getUsersByRole(Role role);
 
