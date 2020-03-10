@@ -26,7 +26,7 @@ public class CompanyController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,7 +35,7 @@ public class CompanyController {
         if (company == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(company, HttpStatus.OK);
+        return new ResponseEntity<>(company, HttpStatus.FOUND);
     }
 
     @PutMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -44,7 +44,7 @@ public class CompanyController {
         if (c == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(company, HttpStatus.OK);
+        return new ResponseEntity<>(company, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete")

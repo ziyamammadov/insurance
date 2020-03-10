@@ -29,7 +29,7 @@ public class UserController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping("/{id}")
@@ -38,7 +38,7 @@ public class UserController {
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.FOUND);
     }
 
     @PutMapping("/save")
@@ -47,7 +47,7 @@ public class UserController {
         if (u == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(u, HttpStatus.OK);
+        return new ResponseEntity<>(u, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete")
@@ -61,7 +61,7 @@ public class UserController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping("/admins")
@@ -70,7 +70,7 @@ public class UserController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping("/operators")
@@ -79,7 +79,7 @@ public class UserController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping("/operatorsByCompany")

@@ -24,7 +24,7 @@ public class ClientController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,7 +33,7 @@ public class ClientController {
         if (client == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(client, HttpStatus.OK);
+        return new ResponseEntity<>(client, HttpStatus.FOUND);
     }
 
     @PutMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,7 +42,7 @@ public class ClientController {
         if (cl == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(client, HttpStatus.OK);
+        return new ResponseEntity<>(client, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete")

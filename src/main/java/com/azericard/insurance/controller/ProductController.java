@@ -25,7 +25,7 @@ public class ProductController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping("/{id}")
@@ -34,7 +34,7 @@ public class ProductController {
         if (product == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(product, HttpStatus.OK);
+        return new ResponseEntity<>(product, HttpStatus.FOUND);
     }
 
     @PutMapping("/save")
@@ -43,7 +43,7 @@ public class ProductController {
         if (p == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(p, HttpStatus.OK);
+        return new ResponseEntity<>(p, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete")

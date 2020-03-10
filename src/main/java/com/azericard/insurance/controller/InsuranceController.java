@@ -25,7 +25,7 @@ public class InsuranceController {
         if (all.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        return new ResponseEntity<>(all, HttpStatus.FOUND);
     }
 
     @GetMapping("/{id}")
@@ -34,7 +34,7 @@ public class InsuranceController {
         if (insurance == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(insurance, HttpStatus.OK);
+        return new ResponseEntity<>(insurance, HttpStatus.FOUND);
     }
 
     @PutMapping("/save")
@@ -43,7 +43,7 @@ public class InsuranceController {
         if (ins == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(ins, HttpStatus.OK);
+        return new ResponseEntity<>(ins, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete")
